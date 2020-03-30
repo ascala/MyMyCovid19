@@ -1,0 +1,374 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+SIOR Model
+\end_layout
+
+\begin_layout Standard
+To model the dynamics, we consider a four compartment epidemic model
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Brauer2012mathematical"
+literal "false"
+
+\end_inset
+
+.
+ In our model, the population is divide in four classes: 
+\begin_inset Formula $S$
+\end_inset
+
+=susceptible, 
+\begin_inset Formula $I$
+\end_inset
+
+=infected, 
+\begin_inset Formula $O$
+\end_inset
+
+=Observed, 
+\begin_inset Formula $R$
+\end_inset
+
+=recovered.
+ We consider a dynamics at fixed number 
+\begin_inset Formula $N$
+\end_inset
+
+ of individuals, i.e.
+ 
+\begin_inset Formula $S+I+O+R=N$
+\end_inset
+
+.
+ Susceptible individuals can become infected at a rate proportional to an
+ infectivity parameter 
+\begin_inset Formula $\beta$
+\end_inset
+
+ times the probability 
+\begin_inset Formula $I/N$
+\end_inset
+
+ of meeting an infected individual.
+ Notice that 
+\begin_inset Formula $\beta$
+\end_inset
+
+ incorporates both the 
+\begin_inset Quotes eld
+\end_inset
+
+biological
+\begin_inset Quotes erd
+\end_inset
+
+ characteristics of the epidemic (i.e.
+ the probability that the infectious agent surmounts our immunitary defenses)
+ and the 
+\begin_inset Quotes eld
+\end_inset
+
+social
+\begin_inset Quotes erd
+\end_inset
+
+ characteristics of the epidemic (i.e.
+ the probability that two individuals come at contact).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\partial_{t}\left(\begin{array}{c}
+S\\
+I\\
+O\\
+R
+\end{array}\right)=\left(\begin{array}{c}
+0\\
+\beta\frac{IS}{N}\\
+\epsilon\gamma I\\
+\left(1-\epsilon\right)\gamma I+hO
+\end{array}\right)-\left(\begin{array}{c}
+\beta\frac{IS}{N}\\
+\gamma I\\
+hO\\
+0
+\end{array}\right)
+\]
+
+\end_inset
+
+As in the 
+\begin_inset Formula $SIR$
+\end_inset
+
+ model, the basic reproduction number is 
+\begin_inset Formula $R_{0}=\beta/\gamma$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chowell2009chapter"
+literal "false"
+
+\end_inset
+
+.
+ As noted before, since 
+\begin_inset Formula $\beta$
+\end_inset
+
+ contains also social interactions, while 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ is disease specific, we expect that at least in the initial stages of the
+ epidemic (i.e.
+ before any policy is actuated or any awareness of the problem is reached)
+ 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+ is a good proxy of the amount of social interactions in a country.
+\end_layout
+
+\begin_layout Section
+Contact Matrix
+\end_layout
+
+\begin_layout Standard
+Taking into account a contact matrix 
+\begin_inset Formula $C$
+\end_inset
+
+ corresponding to class ages 
+\begin_inset Formula $a=1..n_{\mathcal{A}}$
+\end_inset
+
+, the 
+\begin_inset Formula $SIOR$
+\end_inset
+
+ model can be rewritten as
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\partial_{t}\left(\begin{array}{c}
+\overrightarrow{S}\\
+\overrightarrow{I}\\
+\overrightarrow{O}\\
+\overrightarrow{R}
+\end{array}\right)=\left(\begin{array}{c}
+0\\
+\frac{\beta}{N}\overrightarrow{S}:C\overrightarrow{I}\\
+\epsilon\gamma\overrightarrow{I}\\
+\left(1-\epsilon\right)\gamma\overrightarrow{I}+h\overrightarrow{O}
+\end{array}\right)-\left(\begin{array}{c}
+\frac{\beta}{N}\overrightarrow{S}:C\overrightarrow{I}\\
+\gamma\overrightarrow{I}\\
+h\overrightarrow{O}\\
+0
+\end{array}\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\overrightarrow{V}$
+\end_inset
+
+ is a vector with 
+\begin_inset Formula $n_{\mathcal{A}}$
+\end_inset
+
+ components and we indicate with 
+\begin_inset Formula $\overrightarrow{V}:\overrightarrow{U}$
+\end_inset
+
+ the vector whose 
+\begin_inset Formula $i^{th}$
+\end_inset
+
+ component is 
+\begin_inset Formula $V_{i}U_{i}$
+\end_inset
+
+.
+ Using the approach of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chowell2009chapter"
+literal "false"
+
+\end_inset
+
+, we calculate the basic reproduction number as 
+\begin_inset Formula $R_{0}=\beta\left\Vert C\right\Vert /\gamma$
+\end_inset
+
+, where 
+\begin_inset Formula $\left\Vert C\right\Vert $
+\end_inset
+
+ is the spectral radius of the matrix.
+ Notice that the parameter 
+\begin_inset Formula $\beta_{eff}$
+\end_inset
+
+ measured using a model with no age classes corresponds to 
+\begin_inset Formula $\beta_{eff}=\beta\left\Vert C\right\Vert $
+\end_inset
+
+.
+ Since there is a sensible change in mortality for ages less and more than
+ 
+\begin_inset Formula $70$
+\end_inset
+
+ years, we renormalize the contact matrix of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Mossong2008social"
+literal "false"
+
+\end_inset
+
+ for Italy to the two age cohorts 
+\begin_inset Formula $0-69$
+\end_inset
+
+ and 
+\begin_inset Formula $70+$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Section
+Incidence
+\end_layout
+
+\begin_layout Standard
+The mortality 
+\begin_inset Formula $m_{a}$
+\end_inset
+
+ for age classes 
+\begin_inset Formula $a=1..n_{\mathcal{A}}$
+\end_inset
+
+ is derived by dividing the number of deaths 
+\begin_inset Formula $d_{a}$
+\end_inset
+
+ by the number of assessed cases 
+\begin_inset Formula $c_{a}$
+\end_inset
+
+.
+ We use the number of cases assessed per age to estimate the incidence 
+\begin_inset Formula $Inc_{a}$
+\end_inset
+
+ of serious cases by age as 
+\begin_inset Formula $Inc_{a}=c_{a}/\sum c_{a}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "SIOR"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

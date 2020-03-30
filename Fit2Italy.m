@@ -9,7 +9,11 @@
 
     Ytot=ReadItaly(); 
 
-    i0=1; teps1=15; teps2=21; t0=30;
+    i0=1; teps1=15; teps2=21; 
+    t0=30; Inc=2*Inc;
+    t0=30; Inc=2*Inc/4;
+    %t0=35; Inc=2*Inc/8;
+    
     fun2=@(p,x)       SIOR_local2([p(1) i0 p(3) teps1 p(5) teps2 p(7)],x,g,h,S0,H0,R0,C,Inc,N);
     Fun2=@(p,x) SIOR_local2_model([p(1) i0 p(3) teps1 p(5) teps2 p(7)],x,g,h,S0,H0,R0,C,Inc,N);
     %    [  b    i0   t0   teps1   eps1  teps2   eps2]
@@ -20,17 +24,17 @@
     [par0,ResNorm] = lsqcurvefit(fun2, parX, 1:33, Ytot', lb);
     y0=fun2(par0,1:33); err0=norm(Ytot-y0);
     semilogy(1:33,Ytot,'o',1:33,y0); hold on
-%     for t0=20:30
-%          par1=par0; par1(3)=t0;
-%          [par1,ResNorm] = lsqcurvefit(fun, par1, 1:33, Ytot', lb);
-%          y1=fun(par1,1:33); err1=norm(Ytot-y1);
-%          if(err1<err0) par0=par1; err1=err0; end
-%      end
-%    semilogy(1:33,y1); hold off
-    [par0(1)/g par0]
+if 3==3
+    for t0=20:40
+         par1=par0; par1(3)=t0;
+         [par1,ResNorm] = lsqcurvefit(fun2, par1, 1:33, Ytot', lb);
+         y1=fun2(par1,1:33); err1=norm(Ytot-y1);
+         if(err1<err0) par0=par1; err1=err0; end
+     end
+   semilogy(1:33,y1); hold off
+end
 
-    % par = [b g h S0 I0 H0 R0] for SIORage_model(par,t,C,Inc,N)
-    % par = [b i0 t0 teps1 eps1 teps2 eps2] for SIOR_local2(par,t,g,h,S0,H0,R0,C,Inc,N)
+    [par0(1)/g par0]
     
 
 %end
