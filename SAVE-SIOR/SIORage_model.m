@@ -8,6 +8,7 @@ b=par(1); g=par(2); h=par(3);
 % dI/dt =  b*S.*C*I/N -g*I
 % dO/dt =  g*Inc*I-h*O
 % dR/dt =  g(1-Inc)*I+h*O
+% dX/dt =  g*Inc*I % JUST A COUNTER
 
 bC=b*C;         % dS/dt = -S.*bC*I/N
                 % dI/dt =  S.*bC*I/N - g*I

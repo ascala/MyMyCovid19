@@ -253,8 +253,6 @@ literal "false"
 \end_inset
 
  is a good proxy of the amount of social interactions in a country.
- Notice that in our model the recovered class comprises both people that
- have successfully recovered and people that failed to do so.
 \end_layout
 
 \begin_layout Section
