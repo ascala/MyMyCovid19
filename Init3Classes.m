@@ -48,9 +48,9 @@ end
 % c are the contacts in 8 classes: 00-09  10-19  20-29  30-39  40-49  50-59 60-69  70+
 % Now want to project c into three classes: 00-19 20-69 and 70+
 Pop=TP.Italia;
-Pp1=sum(Pop(1:2)); pp1=Pop(1:2)/Pp1;% up to 70
-Pp2=sum(Pop(3:7)); pp2=Pop(3:7)/Pp2;% up to 70
-Pp3=sum(Pop(8:10)); pp3=1; % 70 and more
+Pop1=sum(Pop(1:2)); pp1=Pop(1:2)/Pop1;% up to 70
+Pop2=sum(Pop(3:7)); pp2=Pop(3:7)/Pop2;% up to 70
+Pop3=sum(Pop(8:10)); pp3=1; % 70 and more
 contacts=zeros(2,2);
 contacts(1,1)=pp1'*c(1:2,1:2)*pp1;
 contacts(1,2)=pp1'*c(1:2,3:7)*pp2;
@@ -63,6 +63,8 @@ contacts(2,3)=pp2'*c(3:7,8)*pp3;
 contacts(3,2)=pp3'*c(8,3:7)*pp2;
 
 contacts(3,3)=pp3'*c(8,8)*pp3;
+
+Pop=[Pop1; Pop2; Pop3];
 
 save("3ageClasses",'contacts','Pop','Inc','Mort');
 

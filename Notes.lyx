@@ -465,7 +465,7 @@ The mortality
 \overrightarrow{R}
 \end{array}\right)=\left(\begin{array}{c}
 0\\
-\frac{\beta}{N}diag\left(\overrightarrow{S}\right)C\overrightarrow{I}\\
+\beta\ diag\left(\overrightarrow{S}\right)C\mathcal{N}^{-1}\overrightarrow{I}\\
 \gamma\epsilon\varXi\overrightarrow{I}\\
 \gamma\left(1-\epsilon\varXi\right)\overrightarrow{I}+h\overrightarrow{O}
 \end{array}\right)-\left(\begin{array}{c}
@@ -478,6 +478,23 @@ h\overrightarrow{O}\\
 
 \end_inset
 
+where 
+\begin_inset Formula $\mathcal{N}^{-1}$
+\end_inset
+
+ is a shorthand for the diagonal matrix whose elements 
+\begin_inset Formula $\mathcal{N}_{ii}$
+\end_inset
+
+ are the inverse of the number of people in the 
+\begin_inset Formula $i^{th}$
+\end_inset
+
+ class age.
+ 
+\end_layout
+
+\begin_layout Standard
 Using the approach of 
 \begin_inset CommandInset citation
 LatexCommand cite

@@ -7,14 +7,13 @@ DataDir="Italy/";
     % read regional data
     iR=1;
     nameR=DataDir+Region(iR)+".csv";
-    TR=readtable(nameR); nDay=max(size(TR.stato));
+    TR=readtable(nameR); nDay=max(size(TR.data));
     Y=zeros(nR,nDay); t=1:nDay; Y(iR,:)=TR.totale_casi; 
     %fprintf("%s\n",Region(iR)); 
-    idx=find(Y(iR,:)>0); y=Y(iR,idx); T=t(idx);
     for iR=2:nR
         nameR=DataDir+Region(iR)+".csv";
-        TR=readtable(nameR);Y(iR,:)=TR.totale_casi; 
-        idx=find(Y(iR,:)>0); y=Y(iR,idx); T=t(idx);
+        %fprintf("%s\n",Region(iR)); 
+        TR=readtable(nameR); Y(iR,:)=TR.totale_casi;
     end
     Ytot=sum(Y);
 

@@ -1,8 +1,0 @@
-Nations=["Belgium" "Germany" "Italy" "Poland" "Finland"  "GreatBritain" "Luxenbourg"];
-nN=7;
-Ndir="Contacts/";
-
-iN=1;
-
-TN=readtable(Ndir+Nations(iN)+".csv");
-C=table2array(TN)

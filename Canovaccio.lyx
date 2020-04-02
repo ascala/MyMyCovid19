@@ -28,7 +28,9 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement H
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
 \use_geometry false
@@ -44,6 +46,7 @@
 \use_package undertilde 1
 \cite_engine basic
 \cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
@@ -79,8 +82,452 @@
 Canovaccio
 \end_layout
 
-\begin_layout Standard
+\begin_layout Section
+Model
+\end_layout
 
+\begin_layout Standard
+To analyze policies, we set up a minimal compartimental model that assumes:
+\end_layout
+
+\begin_layout Itemize
+Contact between infected 
+\begin_inset Formula $I$
+\end_inset
+
+ and susceptible 
+\begin_inset Formula $S$
+\end_inset
+
+ generates new infected at a rate 
+\begin_inset Formula $\beta$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Infected are asymptomatic.
+ After a time 
+\begin_inset Formula $\tau_{I}=\gamma^{-1}$
+\end_inset
+
+ either recover with probability 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ or show evident sympthoms (compartiment 
+\begin_inset Formula $O$
+\end_inset
+
+ =
+\begin_inset Quotes erd
+\end_inset
+
+observable
+\begin_inset Quotes erd
+\end_inset
+
+) with probability 
+\begin_inset Formula $1-\epsilon$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $O$
+\end_inset
+
+ do not infect others, either because hospitalized or because they start
+ a quarantine
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $O$
+\end_inset
+
+ recovers after a time 
+\begin_inset Formula $h^{-1}$
+\end_inset
+
+ (either because recovered or because dead...
+ should say politely) 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename SIOR.png
+	lyxscale 30
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Compartimental model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Lockdown
+\end_layout
+
+\begin_layout Standard
+We notice a strong lockdown effect from mobility data
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename MobilityLockDown.png
+	lyxscale 30
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Mobility change
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To fit our model over Italian data, i.e., we confront 
+\begin_inset Formula $Y^{obs}$
+\end_inset
+
+, the reported cumulative number of Covid19 cases, with a fraction 
+\begin_inset Formula $\omega$
+\end_inset
+
+ of the analogous quantity 
+\begin_inset Formula $Y^{mod}$
+\end_inset
+
+ predicted by our model.
+ We observe a good stability of the fitted parameters (i.e.
+ they change by few percent by varying 
+\begin_inset Formula $\omega$
+\end_inset
+
+ in a range 
+\begin_inset Formula $[10\%\ldots100\%]$
+\end_inset
+
+).
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename FitAttenuation.png
+	lyxscale 30
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison of the cumulative number of observed cases with our model.
+ Parameters indicate a reduction of 
+\begin_inset Formula $50\%$
+\end_inset
+
+ in the number of contacts after the lockdown
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+To take account of a possible reduction of the virality due to reduced contacts,
+ we consider two different values 
+\begin_inset Formula $\beta^{I},\beta^{II}$
+\end_inset
+
+ before and after the lockdown.
+ We find 
+\begin_inset Formula $\beta^{I}/\beta^{II}\sim50\%$
+\end_inset
+
+; such results indicate that , thanks to the reduction in mobility and the
+ new social distance behaviors, such reduction correspond to a 
+\begin_inset Formula $\sim50\%$
+\end_inset
+
+ post-lockdown decrease in contacts.
+ The number does not depend significantly on the fraction 
+\begin_inset Formula $\omega$
+\end_inset
+
+ of serious cases we are observing.
+ 
+\end_layout
+
+\begin_layout Section
+Scenarios
+\end_layout
+
+\begin_layout Standard
+The observed reproduction number in our model is 
+\begin_inset Formula $R_{0}\sim3.5$
+\end_inset
+
+ and is again stable against varying the fraction 
+\begin_inset Formula $\omega$
+\end_inset
+
+ of cases.
+ Notice that in our model 
+\begin_inset Formula $\beta$
+\end_inset
+
+ (and hence 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+) depends also on the contact matrix 
+\begin_inset Formula $C$
+\end_inset
+
+, i.e.
+ on the structure of social interactions among age classes; as an example,
+ the different patterns of contacts in Germany and in Italy could easily
+ justify a growth of the epidemic twice faster in the second country.
+\end_layout
+
+\begin_layout Standard
+We first consider what happens by stopping the lockdown after the peak of
+ reported synthomatic people (i.e.
+ 
+\begin_inset Formula $\omega O$
+\end_inset
+
+) 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Scenario1.png
+	lyxscale 30
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison of the scenarios where the lockdown is relaxed after it is reached
+ the 
+\begin_inset Formula $70\%$
+\end_inset
+
+ and the 
+\begin_inset Formula $50\%$
+\end_inset
+
+ of the reported cases peak
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We notice that, contrary to the scenarios were exiting the lockdown would
+ restart the epidemics and create a new peak, for our parameters exiting
+ the lockdown prolongs the reporting of cases without putting under strain
+ the national healthcare system (HERE WE ARE AVOIDING SPEAKING OF THE MORTALITY
+ ....
+ THAT COULD BE THE FOCUS OF THE PAPER: SCENARIOS FOR HEALH-CARE CAPACITY).
+ This is due to the fact that, in our model and with our estimated parameters
+ (remember 
+\begin_inset Formula $R_{0}\sim3.5$
+\end_inset
+
+), the number of infected and recovered is much higher than what reported
+ to the national healthcare system.
+ Hence, lockdown does not happen in the early stages .
+\end_layout
+
+\begin_layout Standard
+Notice that lockdown has two effects: lowering the peak – very important
+ for avoiding the collapse pf the national healthcare system – but also
+ moving the peak toward later times – extremely obnoxious for the economy
+ of a country.
+ 
+\end_layout
+
+\begin_layout Subsection
+Early Lockdown
+\end_layout
+
+\begin_layout Standard
+Here we show that early lockdown reduce the height of the peak without much
+ moving it forward in time.
+ However, ending the lockdown can make epidemic start again
+\end_layout
+
+\begin_layout Subsection
+Strong lockdown
+\end_layout
+
+\begin_layout Standard
+Here we show that increasing the strength of the lockdown (i.e.
+ reducing the social contacts) is much less effective than acting in early
+ times; moreover, if moves the peak forward in time.
+ It can be reasonable only for low productive part of the population
+\end_layout
+
+\begin_layout Subsection
+Effects on regions
+\end_layout
+
+\begin_layout Standard
+Starting from the fact that different regions have different delays in the
+ start of the epidemics (taking Lombardia as the earliest), we could analyze
+ possible scenarios according to the delay (i.e.
+ can the end of the lockdown restart an epidemic in some regions?)
+\end_layout
+
+\begin_layout Section
+Class Ages
+\end_layout
+
+\begin_layout Standard
+The model, to take account for age classes, incorporates also contact patterns
+ through a sociological matrix 
+\begin_inset Formula $C$
+\end_inset
+
+ that rescales the infectivity 
+\begin_inset Formula $\beta$
+\end_inset
+
+; moreover, it also considers the different age incidence of 
+\begin_inset Quotes eld
+\end_inset
+
+observable
+\begin_inset Quotes erd
+\end_inset
+
+ cases through a matrix 
+\begin_inset Formula $\varXi$
+\end_inset
+
+ that built up on ISS data.
+\end_layout
+
+\begin_layout Section
+Some thoughts
+\end_layout
+
+\begin_layout Standard
+Social matrices indicates that
+\end_layout
+
+\begin_layout Itemize
+Young people (
+\begin_inset Formula $0-19$
+\end_inset
+
+) are the most interconnected, with higher contacts rates.
+ They are the ones that 
+\begin_inset Quotes eld
+\end_inset
+
+dominate
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Formula $R_{0}$
+\end_inset
+
+.
+ Hence, most policies will be late if they don't act first with youngs.
+ On the other hand, if the infection is very quick and mostly asymptomatic,
+ it is difficult to detect an epidemic before it has already spread too
+ much
+\end_layout
+
+\begin_layout Itemize
+Elderly people (
+\begin_inset Formula $60+$
+\end_inset
+
+) are the second most interconnected class.
+ Since for Covid19 the incidence is also higher in their class, that's were
+ it makes sense to enforce a stronger and longer lockdown
+\end_layout
+
+\begin_layout Standard
+Thnks
 \end_layout
 
 \end_body

@@ -50,6 +50,6 @@ contacts(1,1)=pop1'*c(1:7,1:7)*pop1;
 contacts(1,2)=pop1'*c(1:7,8)*pop2;
 contacts(2,1)=pop2'*c(8,1:7)*pop1;
 contacts(2,2)=pop2'*c(8,8)*pop2;
-Pop=[Pop1 Pop2];
+Pop=[Pop1; Pop2];
 
 save("2ageClasses",'contacts','Pop','Inc','Mort');
