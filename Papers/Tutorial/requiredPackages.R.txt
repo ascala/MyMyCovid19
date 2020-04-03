@@ -1,0 +1,7 @@
+#set a CRAN mirror
+ local({r <- getOption("repos")
+       r["CRAN"] <- "https://cloud.r-project.org/"
+       options(repos=r)})
+installFunction<-function(pkg) install.packages(pkg,dependencies=T)
+pkgs <-c("deSolve","ggplot2","plotrix") 
+lapply(pkgs,installFunction)
