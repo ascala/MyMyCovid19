@@ -3,7 +3,9 @@
     % contact matrix, populations, incidence of discovery
     load("3ageClasses",'contacts','Pop','Inc','Mort');
 
-    Ytot=ReadItaly();tend=max(size(Ytot)); tend=29;
+    
+    load("Fit1",'Y1');
+    Ytot=Y1(:,3)'; tend=50;
 
     
     C=contacts; % normalization
@@ -13,7 +15,7 @@
 
     i0=1; teps=15; 
     %t0=25; Inc=2*Inc;
-    t0=33; Inc=2*Inc*40/100;
+    t0=35; Inc=2*Inc*40/100;
     %t0=25; Inc=2*Inc/2;
     %t0=30; Inc=2*Inc/4;
     %t0=34; Inc=2*Inc/8;

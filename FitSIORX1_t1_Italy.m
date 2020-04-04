@@ -3,7 +3,7 @@
     % contact matrix, populations, incidence of discovery
     load("2ageClasses",'contacts','Pop','Inc','Mort');
 
-    Ytot=ReadItaly(); tend=max(size(Ytot)); tend=22;
+    Ytot=ReadItaly(); tend=max(size(Ytot)); tend=29;
 
     
     C=1; Inc=1; % normalization
@@ -12,31 +12,35 @@
 
 
     i0=1; teps=15; 
-    %t0=25; Inc=Inc*100/100;
-    t0=28; Inc=Inc*40/100;
-    %t0=25; Inc=Inc*50/100;
-    %t0=30; Inc=Inc*25/100;
-    %t0=34; Inc=Inc*12.5/100;
-    fun1=@(p,x) SIORX1_t1([p(1) i0 p(3) teps p(5)],x,g,h,S0,H0,R0,X0,C,Inc,N);
-    Fun1=@(p,x) SIORX1_t1_model([p(1) i0 p(3) teps p(5)],x,g,h,S0,H0,R0,X0,C,Inc,N);
+    %t0=26; Inc=Inc*100/100;
+    %t0=32; Inc=Inc*60/100;
+    t0=30; Inc=Inc*40/100;
+    %t0=36; Inc=Inc*20/100;
+    %t0=39; Inc=Inc*10/100;
+
     %    [ b     i0   t0   teps   eps]
     parX=[3*g    i0   t0   teps   0.5];
+
+    fun0=@(p,x) SIORX1_t0([p(1) i0 p(3)],x,g,h,S0,H0,R0,X0,C,Inc,N);
+    
     lb=[0 1 5 5 0]; % lower bounds for the parameters
-    [par0,ResNorm] = lsqcurvefit(fun1, parX, 1:tend, Ytot(1:tend)', lb);
+    [par0,ResNorm] = lsqcurvefit(fun0, parX, 1:teps, Ytot(1:teps)', lb);
+    y0=fun0(par0,1:teps); err0=norm(Ytot(1:teps)-y0);
+    %semilogy(1:tend,Ytot(1:tend),'ok',1:teps,y0,'r'); hold on
+  
+    beta=par0(1);
+    
+    fun1=@(p,x) SIORX1_t1([beta i0 p(3) teps p(5)],x,g,h,S0,H0,R0,X0,C,Inc,N);
+    
+    lb=[0 1 5 5 0]; % lower bounds for the parameters
+    [par0,ResNorm] = lsqcurvefit(fun1, par0, 1:tend, Ytot(1:tend)', lb);
     y0=fun1(par0,1:tend); err0=norm(Ytot(1:tend)-y0);
-    semilogy(1:tend,Ytot(1:tend),'o',1:tend,y0,'--'); hold on
-if 3==1
-    for t0=20:40         
-        par1=par0; par1(3)=t0;
-        [par1,ResNorm] = lsqcurvefit(fun1, par1, 1:tend, Ytot(1:tend)', lb);
-        y1=fun1(par1,1:tend); err1=norm(Ytot(1:tend)-y1);
-        if(err1<err0) par0=par1; err1=err0; end
-    end
-    semilogy(1:tend,y1); hold off
-end
+    semilogy(1:tend,Ytot(1:tend),'ok',1:tend,y0,'k'); hold on
 
 [par0(1)*max(eig(C))/g par0]
+%pause
 
+Fun1=@(p,x) SIORX1_t1_model(p,x,g,h,S0,H0,R0,X0,C,Inc,N);
 Fun2=@(p,x) SIORX1_t2_model(p,x,g,h,S0,H0,R0,X0,C,Inc,N);
 
 r=0.035; 
@@ -59,6 +63,7 @@ figure(2);
 plot(T,yX,'r',T,y1,'b',T,y2,'g',T,y0,'k')
 
 save("Italy1",'par0');
+save("Fit1",'T','YX','Y0','Y1','Y2')
 
 
 %end
