@@ -15,6 +15,7 @@ bC=b*C;         % dS/dt = -S.*bC*I/N
 Gi=g*Inc;       % dO/dt =    Gi.*I   - h*O  ; dX/dt = Gi.*I
 Gi1=g*(1-Inc);  % dR/dt =   Gi1.*I   + h*O
 
+N=sum(Pop);
 
 [T,Y]=ode45(@DifEq,t,par(4:18));
 

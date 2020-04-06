@@ -3,7 +3,10 @@
     % contact matrix, populations, incidence of discovery
     load("3ageClasses",'contacts','Pop','Inc','Mort');
 
-    Ytot=ReadItaly();tend=max(size(Ytot)); tend=29;
+%%%%% do not use incidence 
+Inc=[1;1;1];
+    
+    Ytot=ReadItaly(); tend=max(size(Ytot)); tend=36;
 
     
     C=contacts; % normalization
@@ -13,10 +16,14 @@
 
     i0=1; teps=15; 
     %t0=25; Inc=2*Inc;
-    t0=33; Inc=2*Inc*40/100;
+    t0=28; Inc=2*Inc*40/100;
     %t0=25; Inc=2*Inc/2;
     %t0=30; Inc=2*Inc/4;
     %t0=34; Inc=2*Inc/8;
+    
+%    %%%%%%%%%%   CHECK - shold get same results of the 1 age class case 
+%    C=ones(3,3); t0=30; Inc=[1;1;1]*40/100;
+
     
     %    [ b     i0   t0   teps   eps]
     parX=[3*g    i0   t0   teps   0.5];
@@ -57,10 +64,11 @@ i2= (im-1)+find(y0(im:end)<m*0.5,1); teps2=T(i2);
 par2=[par0 teps2 1];
 Y2=Fun2(par2,T); y2=r*sum(Y2(:,iH),2); 
 
-figure(2);
-plot(T,yX,'r',T,y1,'b',T,y2,'g',T,y0,'k')
+%figure(2);
+%plot(T,yX,'r',T,y1,'b',T,y2,'g',T,y0,'k')
+Scenario1figure( T, [yX y1 y2 y0])
 
-save("Italy3",'par0');
-
+save("Italy3",'par0','g','h','S0','H0','R0','X0','C','Inc','Pop');
+save("Fit3",'T','YX','Y0','Y1','Y2');
 
 %end

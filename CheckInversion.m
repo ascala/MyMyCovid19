@@ -16,10 +16,12 @@ Ydead=zeros(nR,nDay); Ydead(iR,:)=TR.deceduti;
 Ytot=zeros(nR,nDay); Ytot(iR,:)=TR.totale_casi;
 Yhos=zeros(nR,nDay); Yhos(iR,:)=TR.totale_ospedalizzati;
             y=Yin(iR,:)-Yout(iR,:)-Ydead(iR,:); 
-%            subplot(1,2,1); semilogy(t,y,'-',[1 nDay],[0 0]); hold on
-%            subplot(1,2,2); semilogy(t-dt(iR),y/rho(iR),'o',[1 nDay],[0 0]); 
-            plot(t,y); 
-            title(Region(iR)); %hold on;
+            [m,tm]=max(y);
+            subplot(1,2,1); semilogy(t,y,'x',[1 nDay],[0 0]); hold on
+%            subplot(1,3,2); semilogy(t,y/m,'.',[1 nDay],[0 0]); hold on
+            subplot(1,2,2); semilogy((1:tm)-dt(iR),y(1:tm)/rho(iR),'o',(tm:nDay)-dt(iR),y(tm:nDay)/rho(iR)); hold on
+%            plot(t,y); 
+%            title(Region(iR)); hold on;
 for iR=2:nR
     nameR=DataDir+Region(iR)+".csv"; nameR
     TR=readtable(nameR); Y(iR,:)=TR.totale_casi;
@@ -30,11 +32,13 @@ for iR=2:nR
     Yhos(iR,:)=TR.totale_ospedalizzati;
 
             y=Yin(iR,:)-Yout(iR,:)-Ydead(iR,:);
-            plot(t,y); 
-%            subplot(1,2,1); semilogy(t,y,'-',[1 nDay],[0 0]); hold on
-%            subplot(1,2,2); semilogy(t-dt(iR),y/rho(iR),'o',[1 nDay],[0 0]); 
-            title(Region(iR)); %hold on;
-            pause
+            [m,tm]=max(y);
+            subplot(1,2,1); semilogy(t,y,'x',[1 nDay],[0 0]); hold on
+%            subplot(1,3,2); semilogy(t,y/m,'.',[1 nDay],[0 0]); hold on
+            subplot(1,2,2); semilogy((1:tm)-dt(iR),y(1:tm)/rho(iR),'o',(tm:nDay)-dt(iR),y(tm:nDay)/rho(iR)); hold on
+%            plot(t,y); 
+%            title(Region(iR)); hold on;
+%            pause
 end
 hold off
 YIn=sum(Yin); YOut=sum(Yout); YDead=sum(Ydead);

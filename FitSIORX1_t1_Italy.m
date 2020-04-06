@@ -3,12 +3,12 @@
     % contact matrix, populations, incidence of discovery
     load("2ageClasses",'contacts','Pop','Inc','Mort');
 
-    Ytot=ReadItaly(); tend=max(size(Ytot)); tend=29;
+    Ytot=ReadItaly(); tend=max(size(Ytot)); tend=36;
 
     
     C=1; Inc=1; % normalization
     S0=sum(Pop); H0=0; R0=0; X0=0; N=sum(Pop);
-    tau=10; g=1/10; h=1/10; b=4.2*g; 
+    tauI=10; g=1/tauI; tauH=10; h=1/tauH; b=3*g; 
 
 
     i0=1; teps=15; 
@@ -19,7 +19,7 @@
     %t0=39; Inc=Inc*10/100;
 
     %    [ b     i0   t0   teps   eps]
-    parX=[3*g    i0   t0   teps   0.5];
+    parX=[b    i0   t0   teps   0.5];
 
     fun0=@(p,x) SIORX1_t0([p(1) i0 p(3)],x,g,h,S0,H0,R0,X0,C,Inc,N);
     
@@ -28,7 +28,7 @@
     y0=fun0(par0,1:teps); err0=norm(Ytot(1:teps)-y0);
     %semilogy(1:tend,Ytot(1:tend),'ok',1:teps,y0,'r'); hold on
   
-    beta=par0(1);
+    beta=par0(1); beta-g
     
     fun1=@(p,x) SIORX1_t1([beta i0 p(3) teps p(5)],x,g,h,S0,H0,R0,X0,C,Inc,N);
     
@@ -60,10 +60,12 @@ par2=[par0 teps2 1];
 Y2=Fun2(par2,T); y2=r*Y2(:,3); 
 
 figure(2);
-plot(T,yX,'r',T,y1,'b',T,y2,'g',T,y0,'k')
+%plot(T,yX,'r',T,y1,'b',T,y2,'g',T,y0,'k')
+Scenario1figure( T, [yX y1 y2 y0])
 
-save("Italy1",'par0');
-save("Fit1",'T','YX','Y0','Y1','Y2')
+save("Italy1",'par0','g','h','S0','H0','R0','X0','C','Inc','N');
+save("Fit1",'T','YX','Y0','Y1','Y2');
+
 
 
 %end
