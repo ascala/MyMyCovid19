@@ -6,6 +6,7 @@ DataDir="Italy/";
 rho=Population/sum(Population);
 load("Delays",'dt','Dt');
 
+
 % read regional data
 iR=1;
 nameR=DataDir+Region(iR)+".csv";
@@ -24,7 +25,7 @@ Yhos=zeros(nR,nDay); Yhos(iR,:)=TR.totale_ospedalizzati;
 %            title(Region(iR)); hold on;
 for iR=2:nR
     nameR=DataDir+Region(iR)+".csv"; nameR
-    TR=readtable(nameR); Y(iR,:)=TR.totale_casi;
+    TR=readtable(nameR);
     Yin(iR,:)=TR.ricoverati_con_sintomi; 
     Yout(iR,:)=TR.dimessi_guariti;
     Ydead(iR,:)=TR.deceduti; 
@@ -40,6 +41,7 @@ for iR=2:nR
 %            title(Region(iR)); hold on;
 %            pause
 end
+%suptitle("Patients_{IN} - Patients_{OUT}");
 hold off
 YIn=sum(Yin); YOut=sum(Yout); YDead=sum(Ydead);
 %plot(t,YIn-YOut-YDead,'o')
