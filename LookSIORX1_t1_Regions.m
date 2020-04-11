@@ -93,6 +93,18 @@ end
 plot(T,sum(y1,2),'g',T,sum(w1,2),'b',T,sum(z0,2),'r',T,sum(y0,2),'k'); 
 hold off
 
+figure(2);
+i1=find(Region=="Lombardia"); i2=find(Region=="Lazio")
+subplot(2,1,1); plot(T,y1(:,i1),'r',T,y1(:,i2),'k'); 
+subplot(2,1,2); plot(T,w1(:,i1),'r',T,w1(:,i2),'k'); 
+% for iR=1:nR
+% plot(T,w1(:,iR)); hold on; 
+% Region(iR)
+% pause
+% end
+% hold off
+
+
 % subplot(2,1,1); plot(T,sum(q1,2),'g',T,sum(z1,2),'b',T,sum(q0,2),'k'); title("no delays")
 % subplot(2,1,2); plot(T,sum(y1,2),'g',T,sum(w1,2),'b',T,sum(y0,2),'k'); title("delays - async end")
 % hold off

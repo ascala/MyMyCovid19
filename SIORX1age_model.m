@@ -1,5 +1,5 @@
 function Y = SIORX1age_model(par,t,C,Inc,N)
-b=par(1); g=par(2); h=par(3);
+b=par(1); g=par(2); h=par(3); % [S0 I0 H0 R0 X0] = par(4:8)
 %S0=par(4); I0=par(5); H0=par(6); R0=par(7); X0=par(8)
 %Y0=[S0 I0 H0 R0 X0]=par(4:8); % WILL BE TREATED AS A COLUMN !!!
 
