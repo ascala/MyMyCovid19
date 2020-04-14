@@ -16,6 +16,7 @@ Yout=zeros(nR,nDay); Yout(iR,:)=TR.dimessi_guariti;
 Ydead=zeros(nR,nDay); Ydead(iR,:)=TR.deceduti; 
 Ytot=zeros(nR,nDay); Ytot(iR,:)=TR.totale_casi;
 Yhos=zeros(nR,nDay); Yhos(iR,:)=TR.totale_ospedalizzati;
+Ybad=zeros(nR,nDay); Ybad(iR,:)=TR.terapia_intensiva;
             y=Yin(iR,:)-Yout(iR,:)-Ydead(iR,:); 
             [m,tm]=max(y);
             subplot(1,2,1); semilogy(t,y,'x',[1 nDay],[0 0]); hold on
@@ -31,7 +32,8 @@ for iR=2:nR
     Ydead(iR,:)=TR.deceduti; 
     Ytot(iR,:)=TR.totale_casi;
     Yhos(iR,:)=TR.totale_ospedalizzati;
-
+    Ybad(iR,:)=TR.terapia_intensiva;
+    
             y=Yin(iR,:)-Yout(iR,:)-Ydead(iR,:);
             [m,tm]=max(y);
             subplot(1,2,1); semilogy(t,y,'x',[1 nDay],[0 0]); hold on
@@ -46,3 +48,9 @@ hold off
 YIn=sum(Yin); YOut=sum(Yout); YDead=sum(Ydead);
 %plot(t,YIn-YOut-YDead,'o')
 YTot=sum(Ytot); YHos=sum(Yhos);
+
+
+figure(3);
+tot=sum(Ytot); bad=sum(Ybad);
+plot(bad./tot)
+

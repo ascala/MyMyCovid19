@@ -11,7 +11,7 @@ Inc=[1;1;1];
     
     C=contacts; % normalization
     S0=Pop'; H0=[0 0 0]; R0=[0 0 0]; X0=[0 0 0]; N=sum(Pop); 
-    tau=10; g=1/10; h=1/10; b=4.2*g; 
+    tau=10; g=1/10; h=1/9; b=4.2*g; 
 
 
     i0=1; teps=15; 

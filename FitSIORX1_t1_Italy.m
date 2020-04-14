@@ -8,7 +8,7 @@
     
     C=1; Inc=1; % normalization
     S0=sum(Pop); H0=0; R0=0; X0=0; N=sum(Pop);
-    tauI=10; g=1/tauI; tauH=10; h=1/tauH; b=3*g; 
+    tauI=10; g=1/tauI; tauH=9; h=1/tauH; b=3*g; 
 
 
     i0=1; teps=15; I0=i0;
@@ -18,6 +18,7 @@
     %t0=36; Inc=Inc*20/100;
     %t0=39; Inc=Inc*10/100;
 
+    
     %    [ b     i0   t0   teps   eps]
     parX=[b    i0   t0   teps   0.5];
 
@@ -43,7 +44,7 @@
 Fun1=@(p,x) SIORX1_t1_model(p,x,g,h,S0,H0,R0,X0,C,Inc,N);
 Fun2=@(p,x) SIORX1_t2_model(p,x,g,h,S0,H0,R0,X0,C,Inc,N);
 
-r=0.035; 
+r=0.05; 
 tmax=300; T=1:tmax;
 
 parX=par0; parX(5)=1;
@@ -65,7 +66,6 @@ Scenario1figure( T, [yX y1 y2 y0])
 
 save("Italy1",'par0','g','h','S0','I0','H0','R0','X0','C','Inc','N');
 save("Fit1",'T','YX','Y0','Y1','Y2');
-
 
 
 %end
