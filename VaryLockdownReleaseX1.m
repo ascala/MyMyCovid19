@@ -15,6 +15,7 @@ tmax=300; T=1:tmax;
 r=0.05; 
 
 par=par0; %[ b  i0  t0  teps  eps ]
+par(5)=0.49;
 Y=Fun1(par,T); y0=r*Y(:,3); [m0 i0]=max(y0); t0=T(i0); 
 
 figure(1); plot(T,y0,'r'); hold on
@@ -25,15 +26,20 @@ for istart=i0:200
     tstart=T(istart); epstart=1;
     par1=[par tstart epstart];
     Y=Fun2(par1,T); y1=r*Y(:,3);
-    j=j+1;
-    drop(j)=100*(1-y0(istart)/m0);
-    [m1 i1]=max(y1(istart:end)); i1=i1+(istart-1); 
-    moverm0(j)=m1/m0;
-    moverm(j)=m1/y1(istart);
-    tovert(j)=T(i1)/T(i0);
-    mm(j)=m1; yy(j)=y1(istart);
-%    figure(1)
-%    plot(tstart:tmax,y1(istart:end),'b'); hold on
+    [m1 i1]=max(y1(istart:end));  
+    if(i1>1)
+        i1=i1+(istart-1);
+        j=j+1;
+        drop(j)=100*(1-y0(istart)/m0);
+        moverm0(j)=m1/m0;
+        moverm(j)=m1/y1(istart);
+        tovert(j)=T(i1)/T(i0);
+        mm(j)=m1; yy(j)=y1(istart);
+    end
+    if(mod(istart,10)==0)
+        figure(1)
+        plot(tstart:tmax,y1(istart:end),'b'); hold on
+    end
 %    figure(2)
 %    plot(drop,m1/m0,'ok'); hold on
 %    figure(3)
