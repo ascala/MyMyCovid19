@@ -3,7 +3,8 @@
     % contact matrix, populations, incidence of discovery
     load("2ageClasses",'contacts','Pop','Inc','Mort');
 
-    Ytot=ReadItaly(); tend=max(size(Ytot)); tend=36;
+    Ytot=ReadItaly(); tend=max(size(Ytot)); 
+    tend=30; % in the paper: 15+15
 
     
     C=1; Inc=1; % normalization
@@ -44,7 +45,7 @@
 Fun1=@(p,x) SIORX1_t1_model(p,x,g,h,S0,H0,R0,X0,C,Inc,N);
 Fun2=@(p,x) SIORX1_t2_model(p,x,g,h,S0,H0,R0,X0,C,Inc,N);
 
-r=0.05; 
+r=0.035; 
 tmax=300; T=1:tmax;
 
 parX=par0; parX(5)=1;

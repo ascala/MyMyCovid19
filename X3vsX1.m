@@ -39,6 +39,10 @@ t70=T(i0b+find(y(i0b:end)<m0b*0.70,1));
 Y70=SIORX3_t2_model([par0b t70 1],TT,gb,hb,S0b,H0b,R0b,X0b,Cb,Incb,Pop);
 y70=sum(Y70(:,7:9),2);
 
+t60=T(i0b+find(y(i0b:end)<m0b*0.60,1));
+Y60=SIORX3_t2_model([par0b t60 1],TT,gb,hb,S0b,H0b,R0b,X0b,Cb,Incb,Pop);
+y60=sum(Y60(:,7:9),2);
+
 t50=T(i0b+find(y(i0b:end)<m0b*0.50,1));
 Y50=SIORX3_t2_model([par0b t50 1],TT,gb,hb,S0b,H0b,R0b,X0b,Cb,Incb,Pop);
 y50=sum(Y50(:,7:9),2);
@@ -48,20 +52,33 @@ y50=sum(Y50(:,7:9),2);
 % par0 = [ b i0 t0 teps eps]
 b=par0b(1); I0b=par0b(2)*ones(1,3)/3; t0=par0b(3); t1=par0b(4); C1=par0b(5)*Cb;
 
+
+%%%% YY is the "free" scenario
 YY=SIORX3_C1_model(TT,t0,b,gb,hb,S0b,I0b,H0b,R0b,X0b,Cb,Incb,Pop,t1,C1);
 yy=sum(YY(:,7:9),2);
 
 YY70=SIORX3_C2_model(TT,t0,b,gb,hb,S0b,I0b,H0b,R0b,X0b,Cb,Incb,Pop,t1,C1,t70,Cb);
 yy70=sum(YY70(:,7:9),2);
+YY60=SIORX3_C2_model(TT,t0,b,gb,hb,S0b,I0b,H0b,R0b,X0b,Cb,Incb,Pop,t1,C1,t60,Cb);
+yy60=sum(YY60(:,7:9),2);
+YY50=SIORX3_C2_model(TT,t0,b,gb,hb,S0b,I0b,H0b,R0b,X0b,Cb,Incb,Pop,t1,C1,t50,Cb);
+yy50=sum(YY50(:,7:9),2);
 
+%%%% ZZ is the YE scenario
 eps=par0(5);
 epsZ=[eps eps eps
      eps  1  eps
      eps eps eps];
 CC=epsZ.*Cb;
+
 ZZ70=SIORX3_C2_model(TT,t0,b,gb,hb,S0b,I0b,H0b,R0b,X0b,Cb,Incb,Pop,t1,C1,t70,CC);
 zz70=sum(ZZ70(:,7:9),2);
+ZZ60=SIORX3_C2_model(TT,t0,b,gb,hb,S0b,I0b,H0b,R0b,X0b,Cb,Incb,Pop,t1,C1,t60,CC);
+zz60=sum(ZZ60(:,7:9),2);
+ZZ50=SIORX3_C2_model(TT,t0,b,gb,hb,S0b,I0b,H0b,R0b,X0b,Cb,Incb,Pop,t1,C1,t50,CC);
+zz50=sum(ZZ70(:,7:9),2);
 
+%%%% WW is the E scenario
 eps=par0(5);
 epsW=[ 1  1   eps
       1  1   eps
@@ -69,7 +86,12 @@ epsW=[ 1  1   eps
 CC=epsW.*Cb;
 WW70=SIORX3_C2_model(TT,t0,b,gb,hb,S0b,I0b,H0b,R0b,X0b,Cb,Incb,Pop,t1,C1,t70,CC);
 ww70=sum(WW70(:,7:9),2);
+WW60=SIORX3_C2_model(TT,t0,b,gb,hb,S0b,I0b,H0b,R0b,X0b,Cb,Incb,Pop,t1,C1,t60,CC);
+ww60=sum(WW60(:,7:9),2);
+WW50=SIORX3_C2_model(TT,t0,b,gb,hb,S0b,I0b,H0b,R0b,X0b,Cb,Incb,Pop,t1,C1,t50,CC);
+ww50=sum(WW50(:,7:9),2);
 
+%%%% XX is the Y scenario
 eps=par0(5);
 epsX=[eps eps eps
       eps  1   1
@@ -77,15 +99,33 @@ epsX=[eps eps eps
 CC=epsX.*Cb;
 XX70=SIORX3_C2_model(TT,t0,b,gb,hb,S0b,I0b,H0b,R0b,X0b,Cb,Incb,Pop,t1,C1,t70,CC);
 xx70=sum(XX70(:,7:9),2);
+XX60=SIORX3_C2_model(TT,t0,b,gb,hb,S0b,I0b,H0b,R0b,X0b,Cb,Incb,Pop,t1,C1,t60,CC);
+xx60=sum(XX60(:,7:9),2);
+XX50=SIORX3_C2_model(TT,t0,b,gb,hb,S0b,I0b,H0b,R0b,X0b,Cb,Incb,Pop,t1,C1,t50,CC);
+xx50=sum(XX50(:,7:9),2);
 
 %plot(TT,zz70,TT,ww70,TT,xx70,TT,yy70,TT,yy)
 %plot(TT,zz70,TT,ww70,TT,yy70,TT,yy)
 %pause
 Scenario3figure(TT,[zz70,ww70,yy70,xx70,yy])
 
-M= [ ZZ70(end,13:15) - ZZ70(t70,13:15) 
-     WW70(end,13:15) - WW70(t70,13:15) 
-     XX70(end,13:15) - XX70(t70,13:15) 
-     YY70(end,13:15) - YY70(t70,13:15) ];
- 
-%plot(M,'-o')
+% ZZ=YE, WW=E, XX=Y, YY=free
+M70 = [ ZZ70(end,13:15) - ZZ70(t70,13:15) 
+        WW70(end,13:15) - WW70(t70,13:15) 
+        XX70(end,13:15) - XX70(t70,13:15) 
+        YY70(end,13:15) - YY70(t70,13:15) ]; 
+S70=100-round(100*M70(1:3,:)./M70(4,:))    
+%plot(M70,'-o')
+
+M60 = [ ZZ60(end,13:15) - ZZ60(t60,13:15) 
+        WW60(end,13:15) - WW60(t60,13:15) 
+        XX60(end,13:15) - XX60(t60,13:15) 
+        YY60(end,13:15) - YY60(t60,13:15) ];
+S60=100-round(100*M60(1:3,:)./M60(4,:))  
+
+M50 = [ ZZ50(end,13:15) - ZZ50(t60,13:15) 
+        WW50(end,13:15) - WW50(t60,13:15) 
+        XX50(end,13:15) - XX50(t60,13:15) 
+        YY50(end,13:15) - YY50(t60,13:15) ];
+S50=100-round(100*M50(1:3,:)./M50(4,:))    
+

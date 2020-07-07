@@ -11,7 +11,7 @@ tauI=10; g=1/tauI; tauH=10; h=1/tauH;
 Fun1=@(p,x) SIORX1_t1_model(p,x,g,h,S0,H0,R0,X0,C,Inc,N);
 Fun2=@(p,x) SIORX1_t2_model(p,x,g,h,S0,H0,R0,X0,C,Inc,N);
 
-tmax=300; T=1:tmax;
+tmax=350; T=1:tmax;
 r=0.05; 
 
 par=par0; %[ b  i0  t0  teps  eps ]
@@ -22,11 +22,12 @@ figure(1); plot(T,y0,'r'); hold on
 
 
 j=0;
-for istart=i0:200
+for istart=i0:i0+30
     tstart=T(istart); epstart=1;
     par1=[par tstart epstart];
     Y=Fun2(par1,T); y1=r*Y(:,3);
     [m1 i1]=max(y1(istart:end));  
+%    i10=find(y1<m0/10,1);
     if(i1>1)
         i1=i1+(istart-1);
         j=j+1;
@@ -36,9 +37,14 @@ for istart=i0:200
         tovert(j)=T(i1)/T(i0);
         mm(j)=m1; yy(j)=y1(istart);
     end
-    if(mod(istart,10)==0)
+    if(mod(istart,5)==0)
         figure(1)
-        plot(tstart:tmax,y1(istart:end),'b'); hold on
+        plot(tstart:tmax,y1(istart:end),'Color',180*[1 1 1]/256); hold on
+        if(i1>1)
+            plot(T(i1),m1,'ok')
+        else
+            plot(T(i1+(istart-1)),m1,'xr')
+        end
     end
 %    figure(2)
 %    plot(drop,m1/m0,'ok'); hold on
