@@ -4,7 +4,7 @@
 % The relative error for matrix elements is around 7% (see variable Drel)
 
 % 15 age classes
-AgeClasses=["00-04"; "05-09"; "10-14"; "15-19"; "20-24"; "25-29"; "30-34"; "35-39"; "45-49"; "50-54"; "55-59"; "60-64"; "65-69"; "70+"];
+AgeClasses=["00-04"; "05-09"; "10-14"; "15-19"; "20-24"; "25-29"; "30-34"; "35-39"; "40-44"; "45-49"; "50-54"; "55-59"; "60-64"; "65-69"; "70+"];
 
 % read some of the 15x15 contact matrices
 DE=csvread('Germany.csv');

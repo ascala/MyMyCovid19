@@ -1,22 +1,22 @@
-﻿"Age Group (Years of Age)","FIPS","GENC","Country/Area Name","Population","Male Population","Female Population"
-"0 - 4 years","UK","GB","United Kingdom","3900837","1998976","1901861"
-"5 - 9 years","UK","GB","United Kingdom","3888224","1993032","1895192"
-"10 - 14 years","UK","GB","United Kingdom","3853333","1976191","1877142"
-"15 - 19 years","UK","GB","United Kingdom","3650847","1869402","1781445"
-"20 - 24 years","UK","GB","United Kingdom","3905885","1992554","1913331"
-"25 - 29 years","UK","GB","United Kingdom","4315423","2198091","2117332"
-"30 - 34 years","UK","GB","United Kingdom","4575893","2336377","2239516"
-"35 - 39 years","UK","GB","United Kingdom","4363155","2239669","2123486"
-"40 - 44 years","UK","GB","United Kingdom","4052243","2085447","1966796"
-"45 - 49 years","UK","GB","United Kingdom","4086242","2098709","1987533"
-"50 - 54 years","UK","GB","United Kingdom","4608451","2341317","2267134"
-"55 - 59 years","UK","GB","United Kingdom","4602431","2273591","2328840"
-"60 - 64 years","UK","GB","United Kingdom","3983398","1974250","2009148"
-"65 - 69 years","UK","GB","United Kingdom","3292718","1593164","1699554"
-"70 - 74 years","UK","GB","United Kingdom","3271511","1542478","1729033"
-"75 - 79 years","UK","GB","United Kingdom","2403318","1091169","1312149"
-"80 - 84 years","UK","GB","United Kingdom","1613548","690018","923530"
-"85 - 89 years","UK","GB","United Kingdom","989701","386053","603648"
-"90 - 94 years","UK","GB","United Kingdom","493491","168025","325466"
-"95 - 99 years","UK","GB","United Kingdom","165690","48886","116804"
-"100+ years","UK","GB","United Kingdom","35737","9031","26706"
+"Age Group (years" of Age)","FIPS","GENC","Country/Area Name","Population","Male Population","Female Population"
+"00-04 years","UK","GB","United Kingdomy",3900837,1998976,1901861
+"05-09 years","UK","GB","United Kingdomy",3888224,1993032,1895192
+"10-14 years","UK","GB","United Kingdomy",3853333,1976191,1877142
+"15-19 years","UK","GB","United Kingdomy",3650847,1869402,1781445
+"20-24 years","UK","GB","United Kingdomy",3905885,1992554,1913331
+"25-29 years","UK","GB","United Kingdomy",4315423,2198091,2117332
+"30-34 years","UK","GB","United Kingdomy",4575893,2336377,2239516
+"35-39 years","UK","GB","United Kingdomy",4363155,2239669,2123486
+"40-44 years","UK","GB","United Kingdomy",4052243,2085447,1966796
+"45-49 years","UK","GB","United Kingdomy",4086242,2098709,1987533
+"50-54 years","UK","GB","United Kingdomy",4608451,2341317,2267134
+"55-59 years","UK","GB","United Kingdomy",4602431,2273591,2328840
+"60-64 years","UK","GB","United Kingdomy",3983398,1974250,2009148
+"65-69 years","UK","GB","United Kingdomy",3292718,1593164,1699554
+"70-74 years","UK","GB","United Kingdomy",3271511,1542478,1729033
+"75-79 years","UK","GB","United Kingdomy",2403318,1091169,1312149
+"80-84 years","UK","GB","United Kingdomy",1613548,690018,923530
+"85-89 years","UK","GB","United Kingdomy",989701,386053,603648
+"90-94 years","UK","GB","United Kingdomy",493491,168025,325466
+"95-99 years","UK","GB","United Kingdomy",165690,48886,116804
+"100+ years","UK","GB","United Kingdomy",35737,9031,26706
